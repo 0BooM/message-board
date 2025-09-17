@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('./partials/head') %>
+  <body>
+    <ul>
+      <% if (message){  %>
+          <li>
+            <p><%= message.text %></p>
+            <p><%= message.user %></p>
+            <p><%= message.added %></p>
+          </li>
+      <% } %>
+    </ul>
+  </body>
+</html>

@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('./partials/head') %>
+  <body>
+    <h1>Create new message</h1>
+    <form method="POST" action="/new">
+      <label for="author"> Author: </label>
+      <input type="text" name="author" id="author" />
+      <label for="messageText"> Text: </label>
+      <input type="text" name="messageText" id="messageText" />
+      <input type="submit" value="Submit" />
+    </form>
+  </body>
+</html>

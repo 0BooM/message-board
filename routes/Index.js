@@ -1,12 +1,23 @@
 const { Router } = require("express");
 const indexRouter = Router();
+const IndexController = require('../controllers/IndexController');
 
-indexRouter.get("/", (req, res) => {
-  res.render("home");
-});
+const messages = [
+  {
+    text: "Hi there!",
+    user: "Amando",
+    added: new Date(),
+  },
+  {
+    text: "Hello World!",
+    user: "Charles",
+    added: new Date(),
+  },
+];
 
-indexRouter.get("/new", (req, res) => {
-  res.send("New message");
-});
+indexRouter.get("/", IndexController.getHome);
+indexRouter.get("/new", IndexController.getForm);
+indexRouter.post("/new", IndexController.addMessage);
+indexRouter.get("/message/:id", IndexController.showDetails);
 
 module.exports = indexRouter;
