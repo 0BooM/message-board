@@ -1,7 +1,7 @@
 const express = require("express");
 const path = require("node:path");
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 4000 
 const indexRouter = require("./routes/Index");
 
 app.set("views", path.join(__dirname, "views"));
