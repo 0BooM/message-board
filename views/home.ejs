@@ -6,13 +6,13 @@
     <%= title %>
     <ul>
       <% if (messages.length > 0){ 
-        messages.forEach((message, index) => { %>
+        messages.forEach((message) => { %>
           <li>
             <p><%= message.text %></p>
-            <p><%= message.user %></p>
-            <p><%= message.added %></p>
+            <p><%= message.author %></p>
+            <p><%= message.created_at %></p>
           </li>
-          <button><a href="/message/<%= index %>">Details</a></button>
+          <button><a href="/message/<%= message.id %>">Details</a></button>
         <% }); %>
       <% } else { %>
       <h2>No messages...</h2>

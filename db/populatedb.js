@@ -2,8 +2,9 @@ const { Client } = require("pg");
 
 const SQL = `CREATE TABLE IF NOT EXISTS messages (
     id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY, 
-    author VARCHAR (255), 
-    text VARCHAR (255)
+    author VARCHAR (60), 
+    text VARCHAR (255),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 INSERT INTO messages (author, text) VALUES

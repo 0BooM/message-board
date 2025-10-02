@@ -1,18 +1,22 @@
-const messages = [
-  {
-    text: "Hi there!",
-    user: "Amando",
-    added: new Date(),
-  },
-  {
-    text: "Hello World!",
-    user: "Charles",
-    added: new Date(),
-  },
-];
+const db = require("../db/queries");
+
+// const messages = [
+//   {
+//     text: "Hi there!",
+//     user: "Amando",
+//     added: new Date(),
+//   },
+//   {
+//     text: "Hello World!",
+//     user: "Charles",
+//     added: new Date(),
+//   },
+// ];
 
 module.exports = {
-  getHome: (req, res) => {
+  getHome: async (req, res) => {
+    const messages = await db.getAllMessages();
+    console.log(messages.author);
     res.render("home", { title: "Mini Messageboard", messages: messages });
   },
   getForm: (req, res) => {
@@ -24,8 +28,9 @@ module.exports = {
     messages.push({ text: message, user: author, added: new Date() });
     res.redirect("/");
   },
-  showDetails: (req, res) => {
-    const message = messages[req.params.id];
+  showDetails: async (req, res) => {
+    const message = await db.getMessageById(req.params.id);
+
     if (!message) {
       return res.status(404).send("Message not found! :(");
     }
