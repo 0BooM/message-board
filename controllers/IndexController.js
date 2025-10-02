@@ -1,18 +1,5 @@
 const db = require("../db/queries");
 
-// const messages = [
-//   {
-//     text: "Hi there!",
-//     user: "Amando",
-//     added: new Date(),
-//   },
-//   {
-//     text: "Hello World!",
-//     user: "Charles",
-//     added: new Date(),
-//   },
-// ];
-
 module.exports = {
   getHome: async (req, res) => {
     const messages = await db.getAllMessages();
@@ -22,10 +9,9 @@ module.exports = {
   getForm: (req, res) => {
     res.render("form");
   },
-  addMessage: (req, res) => {
-    const author = req.body.author;
-    const message = req.body.messageText;
-    messages.push({ text: message, user: author, added: new Date() });
+  addMessage: async (req, res) => {
+    const { author, message } = req.body;
+    await db.insertMessage(author, message);
     res.redirect("/");
   },
   showDetails: async (req, res) => {
@@ -35,5 +21,9 @@ module.exports = {
       return res.status(404).send("Message not found! :(");
     }
     res.render("message", { message });
+  },
+  deleteMessages: async(req, res) => {
+    db.deleteMessages();
+    res.redirect("/");
   }
 };

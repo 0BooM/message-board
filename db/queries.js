@@ -20,7 +20,13 @@ async function insertMessage(author, text) {
   );
 }
 
+async function deleteMessages(){
+  await pool.query("TRUNCATE TABLE messages RESTART IDENTITY");
+}
+
 module.exports = {
   getAllMessages,
   getMessageById,
+  insertMessage,
+  deleteMessages,
 };

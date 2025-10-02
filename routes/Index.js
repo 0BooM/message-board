@@ -19,5 +19,6 @@ indexRouter.get("/", IndexController.getHome);
 indexRouter.get("/new", IndexController.getForm);
 indexRouter.post("/new", IndexController.addMessage);
 indexRouter.get("/message/:id", IndexController.showDetails);
+indexRouter.get("/delete", IndexController.deleteMessages);
 
 module.exports = indexRouter;
