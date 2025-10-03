@@ -1,4 +1,5 @@
 const { Client } = require("pg");
+require("dotenv").config();
 
 const SQL = `CREATE TABLE IF NOT EXISTS messages (
     id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY, 
@@ -17,7 +18,7 @@ async function main(){
     console.log("sending...");
     const client = new Client({
       connectionString:
-        "postgresql://boomlin:Haselko14@localhost:5432/message_board",
+        `postgresql://${process.env.DB_USER}:${process.env.DB_PASSWORD}@${process.env.DB_HOST}:${process.env.DB_PORT}/${process.env.DB_NAME}`,
     });
     await client.connect();
     await client.query(SQL);

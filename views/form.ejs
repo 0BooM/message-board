@@ -3,6 +3,13 @@
   <%- include('./partials/head') %>
   <body>
     <h1>Create new message</h1>
+    <% if (locals.errors) {%>
+    <ul>
+      <% errors.forEach(function(error) { %>
+      <li><%= error.msg %></li>
+      <% }); %>
+    </ul>
+    <% } %>
     <form method="POST" action="/new">
       <label for="author"> Author: </label>
       <input type="text" name="author" id="author" />
